@@ -10,19 +10,18 @@ pub struct Client {
 
 impl Client {
     pub fn new(metadata: Vec<Metadata>) -> Self {
-        Client { metadata, chosen: Vec::new() }
+        Client {
+            metadata,
+            chosen: Vec::new(),
+        }
     }
 
     pub fn pick_files(&mut self, file_names: Vec<String>) {
         for name in file_names {
-            match self
-                .metadata
-                .iter()
-                .find(|meta| {
-                    println!("{}", meta.name_extension == name);
-                    meta.name_extension == name
-                })
-            {
+            match self.metadata.iter().find(|meta| {
+                println!("{}", meta.name_extension == name);
+                meta.name_extension == name
+            }) {
                 Some(meta) => self.chosen.push(meta.clone()),
                 None => println!("No more files"),
             }

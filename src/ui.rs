@@ -1,7 +1,7 @@
 use crate::client::Client;
+use crate::server::Server;
 use drive_client::types::Metadata;
 use regex::Regex;
-use serde::{Deserialize, Serialize};
 use sha1::{Digest, Sha1};
 use std::fs::{self};
 use std::io;
@@ -24,8 +24,8 @@ impl Ui {
     }
 
     pub fn share(file_names: Vec<String>) -> std::io::Result<()> {
-        let json = fs::read(&"./.drive/metadata.json").unwrap();
-        let json = String::from_utf8_lossy(&json);
+        let bytes = fs::read(&"./.drive/metadata.json").unwrap();
+        let json = String::from_utf8_lossy(&bytes);
         let metadata: Vec<Metadata> = serde_json::from_str(&json)?;
         let mut client = Client::new(metadata);
 
@@ -36,6 +36,7 @@ impl Ui {
     }
 
     pub fn server() -> std::io::Result<()> {
+        Server::listen().unwrap();
         Ok(())
     }
 }

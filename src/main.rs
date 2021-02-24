@@ -12,32 +12,31 @@ use std::env;
 
 mod client;
 mod server;
-mod ui;
 mod types;
-
+mod ui;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
     let command = &args[1].as_str();
 
     match command {
-         &"init" => {
+        &"init" => {
             println!("Configuring folder...");
-            ui::Ui::init()
-                .expect("Could not initialize the folder");
+            ui::Ui::init().expect("Could not initialize the folder");
         }
-        
-         &"share" => {
+
+        &"share" => {
             println!("Starting to share ...");
             ui::Ui::share(args[1..].to_vec())
                 .expect("Something went wrong while sending the files");
-         }
+        }
 
-         &"server" => {
+        &"server" => {
+            ui::Ui::server()
+                .expect("Could not start the server");
+        }
 
-         }
-
-         _ => println!("Wrong command")
+        _ => println!("Wrong command"),
     }
 }
 

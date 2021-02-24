@@ -100,9 +100,9 @@ dependencies = [
 
 [[package]]
 name = "drive-server"
-version = "0.1.1"
+version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "54bbc8d5541cff3a02d118aed121e727849634c0c9cd0e6323a39ab11fe2e7fe"
+checksum = "fe6ccea978e792dce84eba0a596c07d59b87e8168a59ce6b34a61f1984d6dcb3"
 dependencies = [
  "bytes",
  "dns-message-parser",

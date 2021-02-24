@@ -4,4 +4,3 @@ pub enum Commands {
     Share,
     Server,
 }
-
