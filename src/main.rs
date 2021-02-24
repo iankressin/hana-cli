@@ -28,6 +28,7 @@ fn main() {
         }
         
          &"share" => {
+            println!("Starting to share ...");
             ui::Ui::share(args[1..].to_vec())
                 .expect("Something went wrong while sending the files");
          }

@@ -83,9 +83,9 @@ dependencies = [
 
 [[package]]
 name = "drive-client"
-version = "0.1.5"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4f31ceeccef5d2dbe2ebed86be6f7b72dfded8a72e4a0cbfe81160a3beb2b12a"
+checksum = "f31cd032ae99ff3ab549531f3c0197b3b77bc8aa964c1fc91f77a80d2e393797"
 dependencies = [
  "bytes",
  "dns-message-parser",

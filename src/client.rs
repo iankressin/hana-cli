@@ -18,14 +18,17 @@ impl Client {
             match self
                 .metadata
                 .iter()
-                .find(|meta| meta.name_extension == name)
+                .find(|meta| {
+                    println!("{}", meta.name_extension == name);
+                    meta.name_extension == name
+                })
             {
                 Some(meta) => self.chosen.push(meta.clone()),
                 None => println!("No more files"),
             }
         }
 
-        println!("Files to share: {:#?}", self.metadata);
+        println!("Files to share: {:#?}", self.chosen);
     }
 
     pub fn send(&self) {
