@@ -1,9 +1,9 @@
 use drive_server::drive_server::DriveServer;
 use drive_server::types::Metadata;
 use std::fs;
-use std::thread;
-use std::sync::{ Arc, RwLock };
 use std::sync::mpsc::channel;
+use std::sync::{Arc, RwLock};
+use std::thread;
 
 pub struct Server;
 

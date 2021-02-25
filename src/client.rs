@@ -1,5 +1,5 @@
 // TODO: There is a lot of cloning back and forth
-// Need to find a way of reducing duplications
+// Need to find a way to reduce duplications
 use drive_client::drive_client::DriveClient;
 use drive_client::types::Metadata;
 
@@ -33,6 +33,4 @@ impl Client {
     pub fn send(&self) {
         DriveClient::send(self.metadata.clone());
     }
-
-    fn update_metadata() {}
 }
