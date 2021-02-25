@@ -5,7 +5,7 @@ DRIVE_DIR="$HOME/.drive"
 function install {
   echo "Installing Local Drive ..."
 
-  URL="https://github.com/iankressin/drive-cli/releases/download/0.0.1/drive-cli"
+  URL="https://github.com/iankressin/drive-cli/releases/download/0.0.2/drive-cli"
 
   echo "--> Configuring directories ..."
   mkdir $DRIVE_DIR
