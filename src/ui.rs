@@ -20,8 +20,15 @@ impl Ui {
         let metadata = MetaHandler::get_metadata().unwrap();
         let mut client = Client::new(metadata);
 
-        client.pick_files(file_names);
-        client.send();
+        match client.pick_files(file_names) {
+            Ok(_) => {
+                println!("Starting to share files ... ");
+                client.send();
+            }
+            Err(err) => {
+                println!("{}", err)
+            }
+        }
 
         Ok(())
     }
@@ -36,4 +43,3 @@ impl Ui {
         Ok(())
     }
 }
-

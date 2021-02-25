@@ -1,9 +1,9 @@
-use std::io;
+use drive_client::types::Metadata;
 use regex::Regex;
 use sha1::{Digest, Sha1};
 use std::fs::{self, File};
+use std::io;
 use std::io::prelude::*;
-use drive_client::types::Metadata;
 
 pub struct MetaHandler;
 
@@ -18,15 +18,15 @@ impl MetaHandler {
         Ok(file)
     }
 
-    pub fn get_metadata() -> Result<Vec<Metadata>,std::io::Error>{
+    pub fn get_metadata() -> Result<Vec<Metadata>, std::io::Error> {
         let bytes = fs::read(&"./.drive/metadata.json").unwrap();
         let json = String::from_utf8_lossy(&bytes);
-        let metadata: Vec<Metadata> = serde_json::from_str(&json)?;    
+        let metadata: Vec<Metadata> = serde_json::from_str(&json)?;
 
         Ok(metadata)
     }
 
-    pub fn _get_metadata_as_string() -> Result<String,std::io::Error>{
+    pub fn _get_metadata_as_string() -> Result<String, std::io::Error> {
         let bytes = fs::read(&"./.drive/metadata.json").unwrap();
         let json = String::from_utf8_lossy(&bytes);
 
@@ -101,7 +101,7 @@ impl MetaHandler {
         let mut file = fs::File::open(&path).unwrap();
         let mut hasher = Sha1::new();
         let n = io::copy(&mut file, &mut hasher).unwrap();
-    
+
         buf.copy_from_slice(&hasher.finalize())
     }
 }
