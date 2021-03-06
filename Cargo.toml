@@ -1,5 +1,5 @@
 [package]
-name = "drive-cli"
+name = "hana-cli"
 version = "0.1.0"
 authors = ["Ian <ianguimaraes31@gmail.com>"]
 edition = "2018"

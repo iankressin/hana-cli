@@ -69,21 +69,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "drive-cli"
-version = "0.1.0"
-dependencies = [
- "hana-client",
- "hana-server",
- "hana-types",
- "hex 0.3.2",
- "lazy_static",
- "regex",
- "serde",
- "serde_json",
- "sha-1",
-]
-
-[[package]]
 name = "generic-array"
 version = "0.14.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -98,6 +83,21 @@ name = "glob"
 version = "0.2.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8be18de09a56b60ed0edf84bc9df007e30040691af7acd1c41874faac5895bfb"
+
+[[package]]
+name = "hana-cli"
+version = "0.1.0"
+dependencies = [
+ "hana-client",
+ "hana-server",
+ "hana-types",
+ "hex 0.3.2",
+ "lazy_static",
+ "regex",
+ "serde",
+ "serde_json",
+ "sha-1",
+]
 
 [[package]]
 name = "hana-client"
