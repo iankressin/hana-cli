@@ -1,12 +1,5 @@
 use std::{error::Error, fmt};
 
-// TODO: Ping & Debug
-pub enum Commands {
-    Init,
-    Share,
-    Server,
-}
-
 #[derive(Debug)]
 pub struct MetaNotFoundError;
 

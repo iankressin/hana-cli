@@ -1,8 +1,8 @@
 // TODO: There is a lot of cloning back and forth
 // Need to find a way to reduce duplications
 use crate::types::MetaNotFoundError;
-use drive_client::drive_client::DriveClient;
-use drive_client::types::Metadata;
+use hana_client::HanaClient;
+use hana_types::Metadata;
 
 pub struct Client {
     metadata: Vec<Metadata>,
@@ -39,7 +39,7 @@ impl Client {
     }
 
     pub fn send(&self) {
-        DriveClient::send(self.metadata.clone());
+        HanaClient::send(self.chosen.clone(), "./");
     }
 
     fn clear_chosen(&mut self) {

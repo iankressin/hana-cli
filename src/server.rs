@@ -1,15 +1,17 @@
-use drive_server::drive_server::DriveServer;
-use drive_server::types::Metadata;
+use hana_server::HanaServer;
+use hana_types::Metadata;
 use std::fs;
 use std::sync::mpsc::channel;
 use std::sync::{Arc, RwLock};
 use std::thread;
 
+static META_PATH: &str = "./.hana/metadata.json";
+
 pub struct Server;
 
 impl Server {
     fn read_metadata() -> Vec<Metadata> {
-        let bytes = fs::read("./.drive/metadata.json").unwrap();
+        let bytes = fs::read(META_PATH).unwrap();
         let json = String::from_utf8_lossy(&bytes);
         let metadata: Vec<Metadata> = serde_json::from_str(&json).unwrap();
 
@@ -21,7 +23,7 @@ impl Server {
         metadata.push(meta.clone());
 
         let json = serde_json::to_string(&metadata).unwrap();
-        fs::write("./.drive/metadata.json", &json).unwrap();
+        fs::write(META_PATH, &json).unwrap();
 
         Ok(())
     }
@@ -39,14 +41,14 @@ impl Server {
 
             thread::spawn(move || {
                 for received in rx {
-                    let mut meta = lock.write().unwrap();
+                    let _ = lock.write().unwrap();
                     println!("File received: {:?}", received);
                     Server::push_metadata(received).unwrap();
                     // meta.push(received);
                 }
             });
 
-            DriveServer::listen(&c_lock, tx).unwrap();
+            HanaServer::listen(&c_lock, tx, "./",true).unwrap();
         });
 
         t.join().unwrap();

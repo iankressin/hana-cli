@@ -1,7 +1,5 @@
 use crate::client::Client;
 use crate::server::Server;
-use drive_client::types::Metadata;
-use std::fs::{self};
 
 use crate::meta_handler::MetaHandler;
 

@@ -1,4 +1,4 @@
-# drive-cli
+# Hana CLI
 
 ## Install
 

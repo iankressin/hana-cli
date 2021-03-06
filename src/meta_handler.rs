@@ -1,4 +1,4 @@
-use drive_client::types::Metadata;
+use hana_types::Metadata;
 use regex::Regex;
 use sha1::{Digest, Sha1};
 use std::fs::{self, File};
@@ -7,10 +7,13 @@ use std::io::prelude::*;
 
 pub struct MetaHandler;
 
+static HANA_PATH: &str = "./.hana";
+static META_PATH: &str = "./.hana/metadata.json";
+
 impl MetaHandler {
     pub fn init_dir() -> Result<File, std::io::Error> {
-        fs::create_dir("./.drive")?;
-        let mut file = fs::File::create("./.drive/metadata.json")?;
+        fs::create_dir(HANA_PATH)?;
+        let mut file = fs::File::create(META_PATH)?;
         let json = serde_json::to_string(&MetaHandler::get_folder_metada().unwrap())?;
 
         file.write_all(&json.as_bytes()).unwrap();
@@ -19,7 +22,7 @@ impl MetaHandler {
     }
 
     pub fn get_metadata() -> Result<Vec<Metadata>, std::io::Error> {
-        let bytes = fs::read(&"./.drive/metadata.json").unwrap();
+        let bytes = fs::read(&META_PATH).unwrap();
         let json = String::from_utf8_lossy(&bytes);
         let metadata: Vec<Metadata> = serde_json::from_str(&json)?;
 
@@ -27,7 +30,7 @@ impl MetaHandler {
     }
 
     pub fn _get_metadata_as_string() -> Result<String, std::io::Error> {
-        let bytes = fs::read(&"./.drive/metadata.json").unwrap();
+        let bytes = fs::read(&META_PATH).unwrap();
         let json = String::from_utf8_lossy(&bytes);
 
         Ok(json.to_string())
@@ -35,7 +38,7 @@ impl MetaHandler {
 
     pub fn update() -> Result<(), std::io::Error> {
         let json = serde_json::to_string(&MetaHandler::get_folder_metada().unwrap())?;
-        fs::write("./.drive/metadata.json", &json).unwrap();
+        fs::write(META_PATH, &json).unwrap();
 
         Ok(())
     }
@@ -100,7 +103,7 @@ impl MetaHandler {
     fn hash_files(path: &str, buf: &mut [u8]) {
         let mut file = fs::File::open(&path).unwrap();
         let mut hasher = Sha1::new();
-        let n = io::copy(&mut file, &mut hasher).unwrap();
+        let _ = io::copy(&mut file, &mut hasher).unwrap();
 
         buf.copy_from_slice(&hasher.finalize())
     }
