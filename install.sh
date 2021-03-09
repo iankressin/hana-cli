@@ -18,9 +18,9 @@ function install {
       mkdir $BIN_DIR 
       cd $BIN_DIR
     fi
+  else
+    cd $BIN_DIR
   fi
-  
-  cd $BIN_DIR
 
   echo "--> Downloading ..."
   bash -c "ls"
