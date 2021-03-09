@@ -1,5 +1,6 @@
 #!/bin/bash
 HANA_DIR="$HOME/.hana"
+BIN_DIR="$HANA_DIR/bin"
 
 function install {
   echo "Installing Hana CLI ..."
@@ -9,9 +10,17 @@ function install {
 
   echo $URL
 
-  echo "--> Configuring directories ..."
-  mkdir $HANA_DIR
-  cd $HANA_DIR
+  if [ ! -d $HANA_DIR ]; then
+    echo "--> Configuring directories ..."
+    mkdir $HANA_DIR
+    cd $HANA_DIR
+    if [ ! -d $BIN_DIR ]; then
+      mkdir $BIN_DIR 
+      cd $BIN_DIR
+    fi
+  fi
+  
+  cd $BIN_DIR
 
   echo "--> Downloading ..."
   bash -c "ls"
@@ -20,7 +29,7 @@ function install {
 	  chmod +x $BIN || fail "chmod +x failed"
 
   echo "*** DONE ***"
-  echo "Now, please add $HANA_DIR to your PATH"
+  echo "Now, please add $BIN_DIR to your PATH"
 }
 
 install
