@@ -7,7 +7,7 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-hana-server = "0.1.6"
+hana-server = "0.1.7"
 hana-client = "0.1.3"
 hana-types= "0.1.0"
 serde = { version = "1.0", features = ["derive"] }
